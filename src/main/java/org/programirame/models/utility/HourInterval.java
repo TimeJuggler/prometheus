@@ -46,4 +46,24 @@ public class HourInterval {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HourInterval that = (HourInterval) o;
+
+        if (!getStartTime().equals(that.getStartTime())) return false;
+        return getEndTime().equals(that.getEndTime());
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = getStartTime().hashCode();
+        result = 31 * result + getEndTime().hashCode();
+        return result;
+    }
 }
