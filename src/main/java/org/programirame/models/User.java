@@ -1,5 +1,8 @@
 package org.programirame.models;
 
+import org.programirame.models.utility.TimeTableFactory;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +31,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Timetable timetable = TimeTableFactory.getDefaultTimeTable();
 
     private UserTypes userType = UserTypes.SUBSCRIBER;
 
@@ -87,5 +94,15 @@ public class User {
 
     public void setUserType(UserTypes userType) {
         this.userType = userType;
+    }
+
+    public Timetable getTimetable() {
+
+        return timetable;
+    }
+
+    public void setTimetable(Timetable timetable) {
+
+        this.timetable = timetable;
     }
 }

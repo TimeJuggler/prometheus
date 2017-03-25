@@ -39,4 +39,21 @@ public class Timetable {
     public void setDailyHours(Map<DayOfWeek, HourInterval> dailyHours) {
         this.dailyHours = dailyHours;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Timetable timetable = (Timetable) o;
+
+        return getDailyHours().equals(timetable.getDailyHours());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return getDailyHours().hashCode();
+    }
 }
